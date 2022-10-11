@@ -262,6 +262,9 @@ void test_lseek_read_write()
 
 
 ---
+https://github.com/releung/web-clipper/issues/854  
+手把手教Linux驱动4-进程、文件描述符、file、inode关系详解  
+
 https://github.com/releung/web-clipper/issues/853  
 linux中文件描述符fd和文件指针filp的理解  
 file_operations  
