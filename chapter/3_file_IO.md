@@ -260,30 +260,35 @@ void test_lseek_read_write()
 
 ## 三、  原子操作、同步、复制、修改文件描述符
 
+
 ---
-https://github.com/releung/web-clipper/issues/847
-http://blog.chinaunix.net/uid-28541347-id-4197881.html
+https://github.com/releung/web-clipper/issues/853  
+linux中文件描述符fd和文件指针filp的理解  
+file_operations  
+---
+https://github.com/releung/web-clipper/issues/847  
+http://blog.chinaunix.net/uid-28541347-id-4197881.html  
 Linux文件共享（一）——进程与打开文件
 
-https://github.com/releung/web-clipper/issues/848
-http://blog.chinaunix.net/uid-28541347-id-4198383.html
+https://github.com/releung/web-clipper/issues/848  
+http://blog.chinaunix.net/uid-28541347-id-4198383.html  
 Linux文件共享(二)——两个独立进程打开同一个文件
 
-https://github.com/releung/web-clipper/issues/849
+https://github.com/releung/web-clipper/issues/849  
 
-http://blog.chinaunix.net/uid-28541347-id-4198394.html
+http://blog.chinaunix.net/uid-28541347-id-4198394.html  
 Linux文件共享(三)——dup
 
-https://github.com/releung/web-clipper/issues/850
-http://blog.chinaunix.net/uid-28541347-id-4198416.html
-Linux文件共享（四）——父进程与子进程之间的文件共享
+https://github.com/releung/web-clipper/issues/850  
+http://blog.chinaunix.net/uid-28541347-id-4198416.html  
+Linux文件共享（四）——父进程与子进程之间的文件共享  
 
-https://github.com/releung/web-clipper/issues/851
-http://blog.chinaunix.net/uid-28541347-id-4198426.html
+https://github.com/releung/web-clipper/issues/851  
+http://blog.chinaunix.net/uid-28541347-id-4198426.html  
 Linux文件共享（五）——线程共享文件
 
-https://github.com/releung/web-clipper/issues/852
-http://blog.chinaunix.net/uid-28541347-id-4198437.html
+https://github.com/releung/web-clipper/issues/852  
+http://blog.chinaunix.net/uid-28541347-id-4198437.html  
 Linux文件共享（六）——描述符传递
 
 ---  
