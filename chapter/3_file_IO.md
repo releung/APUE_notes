@@ -260,6 +260,18 @@ void test_lseek_read_write()
 
 ## 三、  原子操作、同步、复制、修改文件描述符
 
+---  
+
+https://www.usna.edu/Users/cs/wcbrown/courses/IC221/classes/L09/Class.html
+
+![](https://www.usna.edu/Users/cs/wcbrown/courses/IC221/classes/L09/fileio1.png)  
+
+![](https://www.usna.edu/Users/cs/wcbrown/courses/IC221/classes/L09/mixedEx.png)
+
+
+---  
+
+
 1. 内核使用三种数据结构描述打开文件。它们之间的关系决定了一个进程与另一个进程在打开的文件之间的相互影响。
 	- 内核为每个进程分配一个进程表项（所有进程表项构成进程表），进程表中都有一个打开的文件描述符表。每个文件描述符占用一项，其内容为：
 		- 文件描述符标志
