@@ -295,7 +295,7 @@
 
 14. 示例：在`main`函数中调用`test_system_file`函数：
 	
-	```
+```
 void test_system_file()
 {
     M_TRACE("---------  Begin test_system_file()  ---------\n");
@@ -311,13 +311,13 @@ void test_system_file()
     _test_host();
     M_TRACE("---------  End test_system_file()  ---------\n\n");
 }
-	```
+```
 
-	注意：
-	- `getpwuid`、`getpwnam`、`getgrgid`、`getgrnam`函数失败时，并不会修改`errno`
+注意：
+- `getpwuid`、`getpwnam`、`getgrgid`、`getgrnam`函数失败时，并不会修改`errno`
 
-  	![read_system_file](../imgs/system_info/read_system_file.JPG) 
-	
+![read_system_file](../imgs/system_info/read_system_file.JPG) 
+
 
 ## 时间和日期
 
@@ -532,7 +532,7 @@ void test_system_file()
 
 11. 示例：在`main`函数中调用`test_times`函数：
 
-	```
+```
 void test_times()
 {
     M_TRACE("---------  Begin test_times()  ---------\n");
@@ -567,6 +567,6 @@ void test_times()
     My_mktime(tm_tm);
     M_TRACE("---------  End test_times()  ---------\n\n");
 }	
-	```
+```
 
-  	![time](../imgs/system_info/time.JPG)  
+![time](../imgs/system_info/time.JPG)  
