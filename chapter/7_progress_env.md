@@ -95,11 +95,11 @@ void test_exit_atexit()
 	- 终止处理程序`exit handler` 多次注册则调用多次
 	- 退出码是除以256的余数
 
-	![atexit](../imgs/progress_env/atexit.JPG) 
+![atexit](../imgs/progress_env/atexit.JPG) 
 
 	如果将 `exit(258);`替换成`_Exit(260)`，则：
 	- 不会再调用终止处理程序`exit handler` 
-	![_Exit](../imgs/progress_env/_Exit.JPG) 
+![_Exit](../imgs/progress_env/_Exit.JPG) 
 
 
 7.  C程序的启动和终止
@@ -107,7 +107,7 @@ void test_exit_atexit()
 	- 内核执行程序的唯一方法是调用一个`exec`函数
 	- 内核自愿终止的唯一方法是显式或者隐式（通过调用`exit`函数）的调用`_exit`或者`_Exit`
 	
-	![program_start_stop](../imgs/progress_env/program_start_stop.JPG) 
+![program_start_stop](../imgs/progress_env/program_start_stop.JPG) 
 
 8. 每个程序都会接收一张环境表。
 	- 与参数表一样，环境表也是一个字符指针数组
@@ -116,7 +116,7 @@ void test_exit_atexit()
 	- 全局变量`envrion`包含了该指针数组的地址：`extern char **envrion`。我们称`environ`为环境指针，它位于头文件`unistd.h`中
 	- 按照惯例，环境字符串由`name=value`这种格式的字符串组成
 
-	![env_table](../imgs/progress_env/env_table.JPG) 	
+![env_table](../imgs/progress_env/env_table.JPG) 	
 
 9. C程序的存储空间布局：C程序一直由下列几部分组成：
 	- 正文段：这是由CPU执行的机器指令部分。
@@ -133,7 +133,7 @@ void test_exit_atexit()
 	- 堆段：通常在堆中进行动态存储分配。
 		- 由于历史习惯，堆位于未初始化数据段和栈段之间
 
-	![progress_mem](../imgs/progress_env/progress_mem.JPG) 
+![progress_mem](../imgs/progress_env/progress_mem.JPG) 
 
 	注意：
 	- 栈从高地址向低地址增长。堆顶和栈顶之间未使用的虚拟地址空间很大
@@ -181,7 +181,7 @@ void test_exit_atexit()
 
 11. 示例:在`main`函数中调用`test_malloc_realloc`函数：
 
-	```
+```
 void test_malloc_realloc()
 {
     M_TRACE("---------  Begin test_malloc_realloc()  ---------\n");
@@ -206,9 +206,9 @@ void test_malloc_realloc()
 // free(ptr3);// 错误：因为 ptr1=ptr3，而 ptr3指向的内存在 My_realloc(ptr3,1000) 时被释放
     M_TRACE("---------  End test_malloc_realloc()  ---------\n\n");
 }
-	```
+```
 
-	![malloc](../imgs/progress_env/malloc.JPG) 
+![malloc](../imgs/progress_env/malloc.JPG) 
 
 	可以看到，我们只需要`free`指针`ptr2,ptr4,ptr5`：
 	- `ptr1`：由于`realloc`缩小动态内存区时，并不移动动态内存区，它的值等于`ptr3`
@@ -220,17 +220,17 @@ void test_malloc_realloc()
 	另外 `free(NULL)` 执行成功，并没有报错。
 
 	下面看一下如果`free(ptr1)`：
-	![malloc_free_err_1](../imgs/progress_env/malloc_free_err_1.JPG)
+![malloc_free_err_1](../imgs/progress_env/malloc_free_err_1.JPG)
 
 	下面看一下如果`free(ptr3)`：
-	![malloc_free_err_2](../imgs/progress_env/malloc_free_err_2.JPG)
+![malloc_free_err_2](../imgs/progress_env/malloc_free_err_2.JPG)
 
 12. 必须用不同的变量保存`realloc`返回的值：
 
-	```
+```
 	char * ptr=malloc(10);
 	ptr=realloc(1000); # 错误行为
-	```
+```
 	因为，一旦`realloc`失败，则`ptr`赋值为`NULL`。`ptr`原来指向的动态内存区再也不能访问，也就无法释放，从而发生内存泄漏
 
 ## 环境变量
@@ -239,10 +239,10 @@ void test_malloc_realloc()
 
 2. `getenv`函数：获取环境变量的值：
 
-	```
+```
 	#include<stdlib.h>
 	char *getenv(const char*name);
-	```
+```
 	- 参数：
 		- `name`：环境变量名
 	- 返回值：
@@ -264,12 +264,12 @@ void test_malloc_realloc()
 
 3.  `putenv/setenv/unsetenv`函数：设置环境变量的值
 
-	```
+```
 	#include<stdlib.h>
 	int putenv(char *str);
 	int setenv(const char *name,const char *value,int rewrite);
 	int unsetenv(const char *name);
-	```
+```
 	- 参数：
 	
 		对于`putenv`函数：
@@ -316,7 +316,7 @@ void test_malloc_realloc()
 
 4. 示例：在`main`函数中调用`test_getenv_setenv`函数：
 
-	```
+```
 void test_getenv_setenv()
 {
     M_TRACE("---------  Begin test_getenv_setenv()  ---------\n");
@@ -342,9 +342,9 @@ void test_getenv_setenv()
     My_unsetenv("aaa");
     M_TRACE("---------  End test_getenv_setenv()  ---------\n\n");
 }
-	```
+```
 
-	![set_get_env](../imgs/progress_env/set_get_env.JPG) 
+![set_get_env](../imgs/progress_env/set_get_env.JPG) 
 	可以看到：
 	- 对于不存在的 `"bbb"`，`unsetenv("bbb")`执行成功
 	- 对于不正确的格式， `putenv("aaa")` 执行成功，但是紧随的`getenv("aaa")` 执行失败
@@ -357,11 +357,11 @@ void test_getenv_setenv()
 
 2. `setjmp/longjmp`函数：非局部`goto`
 
-	```
+```
 	#include<setjmp.h>
 	int setjmp(jmp_buf env);
 	void longjmp(jmp_buf env,int val);
-	```
+```
 
 	- 参数：
 	
@@ -390,7 +390,7 @@ void test_getenv_setenv()
 
 3. 示例：在`main`函数中调用`test_setjmp_longjmp`函数：
 
-	```
+```
 void test_setjmp_longjmp()
 {
     M_TRACE("---------  Begin test_setjmp_longjmp()  ---------\n");
@@ -431,8 +431,8 @@ void test_setjmp_longjmp()
     }
     M_TRACE("---------  End test_setjmp_longjmp()  ---------\n\n");
 }
-	```
-	![longjump](../imgs/progress_env/longjump.JPG)
+```
+![longjump](../imgs/progress_env/longjump.JPG)
 
 	注意：使用`longjmp`和`setjmp`时，不能将它们包装起来使用（即不能使用`My_longjmp,My_setjmp`包装函数），而是直接使用。
 
@@ -440,7 +440,7 @@ void test_setjmp_longjmp()
 
 1. 每个进程都有一组资源限制，其中一些可以通过`getrlimit/setrlimit`函数查询和修改：
 
-	```
+```
 	#include<sys/resource.h>
 	int getrlimit(int resource,struct rlimit *rlptr);
 	int setrlimit(int resource,struct rlimit *rlptr);
@@ -459,7 +459,7 @@ void test_setjmp_longjmp()
 		rlim_t rlim_cur; //软限制：当前的限制值
 		rlim_t rlim_max; //硬限制：最大值
 	};
-	```
+```
 
 	注意：
 	- 在更改资源限制时，有三条规则：
@@ -487,7 +487,7 @@ void test_setjmp_longjmp()
 
 2. 示例：在`main`函数中调用`test_getrlimit_setrlimit`函数：
 
-	```
+```
 void test_getrlimit_setrlimit()
 {
     M_TRACE("---------  Begin test_getrlimit_setrlimit()  ---------\n");
@@ -510,8 +510,8 @@ void test_getrlimit_setrlimit()
     My_getrlimit(RLIMIT_NICE,&buf);
     M_TRACE("---------  End test_getrlimit_setrlimit()  ---------\n\n");
 }
-	```
+```
 
-	![getrlimit](../imgs/progress_env/getrlimit.JPG) 
+![getrlimit](../imgs/progress_env/getrlimit.JPG) 
 
 	注意： `setrlimit`需要超级用户的权限，否则报错。
